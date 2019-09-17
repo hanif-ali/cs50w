@@ -1,0 +1,11 @@
+*/**/flask_session
+*/**/__pycache__
+*/**/flask_session
+*/**/__pycache__
+~
+*.un
+*.swo
+*.swp
+*.swn
+*.pyc
+*.session

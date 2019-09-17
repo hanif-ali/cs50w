@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block styles %}
+
+<style>
+
+.message{
+  margin: 20px 40px 0px 40px;
+}
+.message a{
+  margin-top: 10px;
+}
+
+</style>
+
+{% endblock %}
+
+{% if msgtype == "error" %}
+  {% set message_class = "alert-warning" %}
+{% else %}
+  {% if msgtype == "success" %}
+    {% set message_class = "alert-success" %}
+  {% endif %}
+{% endif %}
+
+{% block content %}
+
+<div class="message alert {{message_class}}">
+  {{message}}<br>
+  <a class="btn btn-secondary" href="{{next_url}}">Go Back</a>
+</div>
+;
+{% endblock %}

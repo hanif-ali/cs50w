@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+
+{% block styles %}
+
+<style>
+  .custom_container{
+    width: 70%;
+    margin: auto;
+  }
+  .custom_container .card{
+    margin-bottom: 20px;
+  }
+  .custom_container .card li .left{
+    font-weight: bold;
+  }
+
+  .custom_container .card li .right{
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="custom_container">
+
+  <div class="alert alert-success">
+    Welcome {{username}} !
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+     Recent Reviews
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% for review in recent_reviews %}
+          <li class="list-group-item">
+            <span class="left">{{review.author}} - {{review.title}}: </span>
+            <q class="right">{{review.review_text}}</q>
+          </li>
+        {% else %}
+          <li class="list-group-item">
+            <span class="right">No Reviews found.</span>
+          </li>
+        {% endfor %}
+    </ul>
+
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+     Recent Checks
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% for check in recent_checks %}
+          <li class="list-group-item">
+            <span class="left">{{check.author}} - {{check.title}}</span>
+          </li>
+        {% else %}
+          <li class="list-group-item">
+            <span class="right">No Recent Checks.</span>
+          </li>
+        {% endfor %}
+    </ul>
+
+  </div>
+</div>
+
+
+
+{% endblock %}

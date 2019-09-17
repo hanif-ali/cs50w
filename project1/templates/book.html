@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+
+
+{% block styles %}
+
+<style>
+  .custom_container{
+    width: 70%;
+    margin: auto;
+  }
+  .custom_container .card{
+    margin-bottom: 20px;
+  }
+  .custom_container .card li .left{
+    font-weight: bold;
+  }
+
+  .custom_container .card li .right{
+  }
+  
+  .review_form input{
+    margin: 10px;
+  }
+  .review_form{
+    margin: auto;
+  }
+  .book-detail{
+    margin: 10px;
+  }
+  .book-detail .left{
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="custom_container">
+
+  <div class="alert alert-secondary text-center">
+    <b>"{{book_data.title}}" by {{book_data.author}}</b>
+    <form class="form-inline review_form" action="/addreview" method="post">
+      <input type="hidden" name="book_id" value="{{book_data.id}}">
+      <label for="review_text col-2" style="margin-left: auto">Add Review:</label>
+      <input type="text" class="form-control col-6" name="review_text" id="review_text" placeholder="Type your review...">
+      <input type="submit" class="btn btn-primary col-3" value="Submit Review">
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <b>Book Details</b>
+    </div>
+    <div class="card-body">
+      <div class="book-detail">
+        <span class="left">Author: </span>
+        <span class="right">{{book_data.author}}</span>
+      </div>
+      <div class="book-detail">
+        <span class="left">ISBN: </span>
+        <span class="right">{{book_data.isbn}}</span>
+      </div>
+      <div class="book-detail">
+        <span class="left">Year of Publication: </span>
+        <span class="right">{{book_data.year}}</span>
+      </div>
+
+      {% if goodreads_data %}
+        <div class="book-detail">
+          <span class="left">Total Readings on Goodreads: </span>
+          <span class="right">{{goodreads_data.ratings_count}}</span>
+        </div>
+        <div class="book-detail">
+          <span class="left">Average Rating on Goodreads: </span>
+          <span class="right">{{goodreads_data.average_rating}}</span>
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      Reviews from Users 
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% for review in book_reviews %}
+          <li class="list-group-item">
+            <span class="left">{{review.username}}: </span>
+            <q class="right">{{review.review_text}}</q>
+          </li>
+        {% else %}
+          <li class="list-group-item">
+            <span class="right">No Reviews found.</span>
+          </li>
+        {% endfor %}
+    </ul>
+  </div>
+
+</div>
+
+{% endblock %}
