@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+
+{% block styles %}
+
+<style>
+  .custom_container{
+    width: 70%;
+    margin: auto;
+  }
+  .custom_container .card{
+    margin-bottom: 20px;
+  }
+  .custom_container .card li .left{
+    font-weight: bold;
+  }
+
+  .custom_container .card li .right{
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="custom_container">
+
+  <div class="card">
+    <div class="card-header">
+      Search Results
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% for result in search_results %}
+          <li class="list-group-item">
+            <span class="left">
+              <a href="/book/{{result.id}}" class="nav-link">
+                {{result.author}} - {{result.title}} (ISBN: {{result.isbn}})
+              </a>
+            </span>
+          </li>
+        {% else %}
+          <li class="list-group-item">
+            <span class="right">No Books found.</span>
+          </li>
+        {% endfor %}
+    </ul>
+
+  </div>
+
+</div>
+
+{% endblock %}
