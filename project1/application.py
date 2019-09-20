@@ -1,7 +1,9 @@
 import os
 import requests
 
+
 from flask import Flask, session, render_template, request, redirect, url_for
+from flask import jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -262,3 +264,32 @@ def delete(review_id):
         message = "Erro: Review not found."
         next_url = f"/home"
         return redirect(f"/message/error?message={message}&next_url={next_url}")
+
+@app.route("/api/<int:isbn>")
+def api(isbn):
+
+    book_data = db.execute("SELECT * from books where isbn=:isbn",
+                           {"isbn": isbn}).fetchone()
+
+    if book_data:
+        goodreads_api_key = os.getenv("GOODREADS_API")
+        book_isbn = book_data["isbn"]
+        api_response = requests.get("https://www.goodreads.com/book/review_counts.json",
+                                    params = {"isbns": str(book_isbn),
+                                            "key": goodreads_api_key})
+        if api_response.status_code == 200:
+            goodreads_data = api_response.json()["books"][0]
+        else:
+            goodreads_data = {}
+
+
+        return jsonify({
+            "name": book_data["title"],
+            "author": book_data["author"],
+            "year": book_data["year"],
+            "isbn": book_isbn,
+            "reviews_count": goodreads_data.get("reviews_count"),
+            "average_rating": goodreads_data.get("average_rating")
+        })
+    else:
+        return jsonify({"error": "Book not found."}), 422
