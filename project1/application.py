@@ -136,7 +136,7 @@ def search():
 
     search_results = db.execute("SELECT * FROM books WHERE title like\
                                 :search_string or author like :search_string\
-                                or CAST(isbn as VARCHAR) like :search_string",
+                                or isbn like :search_string",
                                 {"search_string": f"%{search_string}%"})
 
     search_results = search_results.fetchall()
