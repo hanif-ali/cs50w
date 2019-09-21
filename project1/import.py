@@ -28,11 +28,6 @@ with open("books.csv") as booksfile:
     try:
         for isbn, book_name, author, year in reader(books_data):
                 print(f"INSERTING ISBN # {isbn}")
-                try:
-                    isbn = int(isbn)
-                except Exception:
-                    print("Skipping {}. ISBN not an integer")
-                    continue
                 db.execute("INSERT into books (isbn, title, author, year) \
                     VALUES (:isbn, :book_name, :author, :year)", {"isbn": isbn,
                     "book_name": book_name, "author": author, "year": year})
