@@ -17,6 +17,9 @@
 
   .custom_container .card li .right{
   }
+  .custom_container .card li a{
+    display: inline
+  }
 </style>
 
 {% endblock %}
@@ -37,7 +40,9 @@
     <ul class="list-group list-group-flush">
         {% for review in recent_reviews %}
           <li class="list-group-item">
-            <span class="left">{{review.author}} - {{review.title}}: </span>
+            <span class="left">
+              <a class="nav-link" href="/book/{{review.book_id}}">{{review.author}} - {{review.title}}:</a>
+            </span>
             <q class="right">{{review.review_text}}</q>
           </li>
         {% else %}
@@ -57,7 +62,11 @@
     <ul class="list-group list-group-flush">
         {% for check in recent_checks %}
           <li class="list-group-item">
-            <span class="left">{{check.author}} - {{check.title}}</span>
+            <span class="left">
+              <a class="nav-link" href="/book/{{check.book_id}}">
+                {{check.author}} - {{check.title}}
+              </a>
+            </span>
           </li>
         {% else %}
           <li class="list-group-item">

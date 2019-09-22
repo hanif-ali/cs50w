@@ -113,11 +113,11 @@ def home():
     user_id = session["user_id"]
     username = session["username"]
 
-    recent_reviews = db.execute("SELECT reviews.id, title, author, review_text \
+    recent_reviews = db.execute("SELECT reviews.id, book_id, title, author, review_text \
                    from books join reviews  on reviews.book_id = books.id \
                    where user_id= :user_id order by reviews.id DESC limit 5",
                                 {"user_id": user_id}).fetchall()
-    recent_checks = db.execute("SELECT books.id, title, author\
+    recent_checks = db.execute("SELECT book_id, title, author\
                    from books join checks on checks.book_id = books.id \
                    where user_id= :user_id order by checks.id DESC limit 5",
                                 {"user_id": user_id}).fetchall()
