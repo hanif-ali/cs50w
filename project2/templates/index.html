@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<div class="wrap-centered-form">
+
+    <div class="container-login">
+        <form class="form-login">
+            <div class="title-login">
+                Sign In Below To Enter a Chat Room
+            </div>
+            <div class="wrap-input">
+                    <input type="text" name="username" placeholder="Display Name">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                        <i class="fa fa-user"></i>
+                    </span>
+            </div>
+            <div class="wrap-input">
+                    <select name="gender">
+                        <option>Gender</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                    <span class="focus-input"></span>
+            </div>
+            <div class="wrap-input">
+                <button type="submit">Join The Chat</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,111 @@
+@font-face {
+  font-family: Montserrat-Regular;
+  src: url('fonts/montserrat/Montserrat-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Montserrat-ExtraBold;
+  src: url('fonts/montserrat/Montserrat-ExtraBold.ttf'); 
+}
+
+@font-face {
+  font-family: Montserrat-Bold;
+  src: url('fonts/montserrat/Montserrat-Bold.ttf'); 
+}
+
+
+/* Background */
+
+.container-global {
+    width: 100%;  
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    overflow: auto;
+  }
+  
+  .container-global::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #005bea;
+    background: -webkit-linear-gradient(bottom, #005bea, #00c6fb);
+    background: -o-linear-gradient(bottom, #005bea, #00c6fb);
+    background: -moz-linear-gradient(bottom, #005bea, #00c6fb);
+    background: linear-gradient(bottom, #005bea, #00c6fb);
+    opacity: 0.9;
+  }
+
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; }
+input:focus:-ms-input-placeholder { color:transparent; }
+
+input::-webkit-input-placeholder { color: #999999; }
+input:-moz-placeholder { color: #999999; }
+input::-moz-placeholder { color: #999999; }
+input:-ms-input-placeholder { color: #999999; }
+
+/* Button Styling */
+
+button, input[type="submit"]{
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover, input[type="submit"]:hover{
+	cursor: pointer;
+}
+
+.wrap-centered-form{
+    width: 350px;
+    margin: auto;
+    margin-top: 20vh;
+}
+
+
+.wrap-input {
+  margin: 15px 0px 15px 0px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+
+.wrap-input input[type='text'] {
+  border: none;
+  outline: none;
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #333333;
+  display: block;
+  width: 100%;
+  background: #fff;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 30px 0 53px;
+}
+
+.wrap-input select {
+  border: none;
+  outline: none;
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  color: #555555;
+  width: 100%;
+  background: #fff;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 10px 0 30px;
+}
