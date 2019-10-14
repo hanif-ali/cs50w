@@ -104,8 +104,12 @@ button:hover, input[type="submit"]:hover{
   background: #fff;
   height: 50px;
   border-radius: 25px;
-  padding: 0 30px 0 53px;
+  padding: 0 30px 0 30px;
   max-width: fill-available;
+}
+
+.wrap-input input[type='text'].input-pad {
+  padding-left: 53px;
 }
 
 
