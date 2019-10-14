@@ -1,0 +1,25 @@
+@media(max-width: 770px){
+    .large-only{
+        display: none;
+    }
+}
+
+.wrap-join-form{
+    margin: auto;
+       margin-top: 20vh;
+
+}
+
+@media(max-width: 600px){
+    .wrap-join-form{
+        margin-top: 6vh;
+    }
+}
+
+.wrap-join-form div:first-child{
+    margin-left: auto;
+}
+
+.wrap-join-form div:last-child{
+    margin-right: auto;
+}

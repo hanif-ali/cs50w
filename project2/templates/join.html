@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static', filename='join.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<div class="wrap-join-form row">
+    <div class="col-lg-4 col-md-5 col-sm-6">
+        <form action="/chat">
+            <div class="form-title">
+                Create a New Chat Room
+            </div>
+
+            <div class="wrap-input">
+                <input type="text" placeholder="Chat Room Name">
+            </div>
+            <div class="wrap-input">
+                <input type="text" placeholder="Topic">
+            </div>
+            <div class="wrap-input">
+                <input type="submit" value="Create Chat Room">
+            </div>
+        </form>
+        <br>
+
+
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 large-only"></div>
+    
+    <div class="col-lg-4 col-md-5 col-sm-6">
+
+        <form action="/chat">
+            <div class="form-title">
+                Join an existing Chat Room
+
+            </div>
+            <div class="wrap-input">
+                <select name="gender">
+                    <option>Select a Chat Room</option>
+                    <option value="x">Chill</option>
+                    <option value="x">Razi Thetas</option>
+                </select>
+            </div>
+            <div class="wrap-input">
+                <input type="submit" value="Start Chatting">
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
