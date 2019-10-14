@@ -14,7 +14,7 @@
     height: 15vh;
     width: 100%;
     padding: 0px 40px 0px 40px;
-    background-color: blue;
+    background-color: rgba(10,240,50, 0.3)
 }
 
 .message{
