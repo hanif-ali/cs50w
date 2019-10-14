@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static', filename='chat.css')}}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="fix-wrap">
+<div class="wrap-chat">
+    <div class="chat-list">
+        <div class="message">
+            <div class="message-name">
+                Hanif Ali
+            </div>
+            <div class="message-text">
+                Hi there!
+            </div>
+        </div>
+        <div class="message">
+            <div class="message-name">
+                Hanif Ali
+            </div>
+            <div class="message-text">
+                Hi there!
+            </div>
+        </div>
+        <div class="message">
+            <div class="message-name">
+                Hanif Ali
+            </div>
+            <div class="message-text">
+                Hi there!
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-box">
+        <form class="chat-form">
+            <div class="row">
+            <div class="wrap-input wrap-message col-10">
+                <input type="text" placeholder="Type your message...">
+            </div>
+            <div class="wrap-input wrap-submit col-2">
+                <input type="submit" value=">">
+            </div>
+            </div>
+        </form>
+    </div>
+    
+</div></div>
+
+{% endblock %}

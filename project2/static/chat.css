@@ -1,0 +1,56 @@
+.container-global{
+    display: flex;
+    flex-flow: column;
+}
+
+.fix-wrap{
+    flex: 1 1 auto
+}
+
+.wrap-chat{
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+
+.chat-list{
+    flex: 1 1  auto;
+    width: 100%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.chat-box{
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 0px 40px 0px 40px;
+    background-color: blue;
+}
+
+.message{
+    background: white;
+    border-radius: 20px;
+    padding: 5px 50px 5px 20px;
+    width: fit-content;
+    float: left;
+    clear: both;
+    margin-top: 20px;
+}
+
+.message .message-name{
+    font-size: 12px;
+    font-weight: bold;
+}
+.message .message-text{
+    font-size: 14px;
+}
+
+
+.wrap-message{
+    float: left;
+    padding-right: 4px;
+}
+.wrap-submit{
+    float: right;;
+}
