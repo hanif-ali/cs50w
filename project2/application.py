@@ -31,3 +31,6 @@ def join():
 def chat():
     return render_template("chat.html")
 
+if __name__== "__main__":
+    socket.run(app, debug=True)
+
