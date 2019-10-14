@@ -1,28 +1,17 @@
-.container-global{
-    display: flex;
-    flex-flow: column;
+.navbar{
+    position: fixed
 }
-
-.fix-wrap{
-    flex: 1 1 auto
-}
-
-.wrap-chat{
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-}
-
 
 .chat-list{
-    flex: 1 1  auto;
+    height: 85vh;
     width: 100%;
     padding: 20px;
+    padding-top: 60px;
     overflow-y: auto;
 }
 
 .chat-box{
-    flex: 0 0 auto;
+    height: 15vh;
     width: 100%;
     padding: 0px 40px 0px 40px;
     background-color: blue;
