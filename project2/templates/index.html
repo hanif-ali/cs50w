@@ -9,10 +9,15 @@
 <div class="wrap-centered-form">
 
     <div class="container-login">
-        <form class="form-login" action="/join" method="post">
+        <form class="form-login" action="/login" method="post">
             <div class="form-title">
                 Sign In Below To Enter a Chat Room
             </div>
+            {% if taken %}
+            <div class="form-error">
+                The username is already taken.
+            </div>
+            {% endif %}
             <div class="wrap-input">
                     <input class="input-pad" type="text" name="username" placeholder="Display Name">
                     <span class="focus-input"></span>

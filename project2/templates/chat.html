@@ -9,30 +9,26 @@
 
 <div class="wrap-chat">
     <div class="chat-list">
-        <div class="message">
-            <div class="message-name">
-                Hanif Ali
+        {% for message in messages %}
+            <div class="message">
+                <div class="message-name">
+                    {{message.0}}
+                </div>
+                <div class="message-text">
+                    {{message.1}}
+                </div>
             </div>
-            <div class="message-text">
-                Hi there!
-            </div>
-        </div>
-        <div class="message">
-            <div class="message-name">
-                Hanif Ali
-            </div>
-            <div class="message-text">
-                Hi there!
-            </div>
-        </div>
+        {% endfor %}
     </div>
 
     <div class="chat-box">
-        <form class="chat-form">
+        <form class="chat-form" action="/add" method="POST">
             <div class="row">
             <div class="wrap-input wrap-message col-10">
-                <input type="text" placeholder="Type your message...">
+                <input type="text" placeholder="Type your message..." name="message">
+
             </div>
+            <input type="hidden" name="room_name" value="{{room_name}}">
             <div class="wrap-input wrap-submit col-2">
                 <input type="submit" value=">">
             </div>
@@ -42,4 +38,8 @@
     
 </div>
 
+<script>
+    chats = document.querySelector(".chat-list")
+    chats.scrollBy(0, chats.scrollHeight)
+</script>
 {% endblock %}

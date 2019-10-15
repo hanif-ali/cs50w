@@ -24,3 +24,8 @@
   padding-left: 23px;
 }
 
+
+.form-error{
+  color: black;
+  text-align: center;
+}

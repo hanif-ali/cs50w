@@ -8,16 +8,16 @@
 
 <div class="wrap-join-form row">
     <div class="col-lg-4 col-md-5 col-sm-6">
-        <form action="/chat">
+        <form action="/create" method="post">
             <div class="form-title">
                 Create a New Chat Room
             </div>
 
             <div class="wrap-input">
-                <input type="text" placeholder="Chat Room Name">
+                <input type="text" name="name" placeholder="Chat Room Name">
             </div>
             <div class="wrap-input">
-                <input type="text" placeholder="Topic">
+                <input type="text" name="topic" placeholder="Topic">
             </div>
             <div class="wrap-input">
                 <input type="submit" value="Create Chat Room">
@@ -31,16 +31,17 @@
     
     <div class="col-lg-4 col-md-5 col-sm-6">
 
-        <form action="/chat">
+        <form action="/join_room" method="post">
             <div class="form-title">
                 Join an existing Chat Room
 
             </div>
             <div class="wrap-input">
-                <select name="gender">
+                <select name="room_name">
                     <option>Select a Chat Room</option>
-                    <option value="x">Chill</option>
-                    <option value="x">Razi Thetas</option>
+                    {% for room in room_names %}
+                    <option value="{{room}}">{{room}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="wrap-input">

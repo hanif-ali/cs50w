@@ -13,6 +13,12 @@
     <div class="container-global" style="background-image:url('static/background.jpg');">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Flack - Online Chatting</a>
+            {% if username %}
+            <span class="span ml-auto text-white" >
+                Logged in as {{username}}
+                <a href="/logout" class="logout-link">Logout</a>
+            </span>
+            {% endif %}
         </nav>
         {% block content %}{% endblock %}
     </div>

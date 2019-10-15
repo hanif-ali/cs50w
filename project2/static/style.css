@@ -51,9 +51,6 @@ body{
 .navbar{
   width: 100%;
 }
-.navbar .navbar-brand{
-  margin: auto;
-}
 
 input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }
@@ -152,4 +149,14 @@ input[type="submit"]{
 
 input[type="submit"]:hover{
   background-color: #444477;
+}
+
+.logout-link{
+  color: #e0e0e0;
+  transform: color 0.2s;
+  margin-left: 20px
+}
+.logout-link:hover{
+  color: #ffffff;
+  text-decoration: none;
 }
