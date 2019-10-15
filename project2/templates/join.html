@@ -14,10 +14,10 @@
             </div>
 
             <div class="wrap-input">
-                <input type="text" name="name" placeholder="Chat Room Name">
+                <input type="text" name="name" placeholder="Chat Room Name" required>
             </div>
             <div class="wrap-input">
-                <input type="text" name="topic" placeholder="Topic">
+                <input type="text" name="topic" placeholder="Topic" required>
             </div>
             <div class="wrap-input">
                 <input type="submit" value="Create Chat Room">
@@ -37,7 +37,7 @@
 
             </div>
             <div class="wrap-input">
-                <select name="room_name">
+                <select name="room_name" required>
                     <option>Select a Chat Room</option>
                     {% for room in room_names %}
                     <option value="{{room}}">{{room}}</option>
