@@ -16,7 +16,8 @@
             {% if username %}
             <span class="span ml-auto text-white" >
                 Logged in as {{username}}
-                <a href="/logout" class="logout-link">Logout</a>
+                {% block links %}{% endblock %}
+                <a href="/logout" class="navigation-link">Logout</a>
             </span>
             {% endif %}
         </nav>

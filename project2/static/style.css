@@ -151,12 +151,12 @@ input[type="submit"]:hover{
   background-color: #444477;
 }
 
-.logout-link{
+.navigation-link{
   color: #e0e0e0;
   transform: color 0.2s;
   margin-left: 20px
 }
-.logout-link:hover{
+.navigation-link:hover{
   color: #ffffff;
   text-decoration: none;
 }

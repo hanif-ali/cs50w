@@ -7,7 +7,7 @@ app.config["SECRET_KEY"] = "1k3jflakj3243kljs"
 
 socket = SocketIO(app)
 
-users = []
+users = {} 
 
 # {"room":[ ("Sender", "Text") ] }
 chat_rooms = {}
@@ -33,10 +33,15 @@ def add_header(r):
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
 
+def leave_group(username):
+    if users[username]:
+        chat_rooms[users[username]].append((username, "Left the group."))
+    users[username] = None
+    
 
 @app.route("/")
 def index():
-    if session.get("logged_in"):
+    if session.get("logged_in") and session.get("username") in users:
         return redirect("/join")
     print(users, file=sys.stdout)
     return render_template("index.html")
@@ -50,7 +55,7 @@ def login():
     if username in users: 
         return render_template("index.html", taken=True)
     else:
-        users.append(username)
+        users[username] = None
         session["logged_in"] = True
         session["username"] = username
         session["gender"] = gender
@@ -59,17 +64,20 @@ def login():
 
 @app.route("/join")
 def join():
-    if not session.get("logged_in"):
-        return redirect("/")
     username = session.get("username")
+    if not (session.get("logged_in") and username in users):
+        return redirect("/")
+    if users[username]:
+        return redirect(f"/chat/{users[username]}")
     room_names = list(chat_rooms.keys())
     return render_template("join.html", room_names=room_names, username=username)
 
 
 @app.route("/create", methods=["POST"])
 def create_room():
-    if not session.get("logged_in"):
+    if not (session.get("logged_in") and session.get("username") in users):
         return redirect("/")
+    username = session["username"]
 
     room_name = request.form.get("name")
     topic = request.form.get("topic")
@@ -79,24 +87,33 @@ def create_room():
 
     else:
         chat_rooms[room_name] = []
-        chat_rooms[room_name].append((session["username"], "Created Group"))
+        chat_rooms[room_name].append((username, "Created Group"))
+        users[username] = room_name
         return redirect(f"/chat/{room_name}")
     
 
 @app.route("/join_room", methods=["POST"])
 def join_room():
-    room_name = request.form.get("room_name")
-    if not session.get("logged_in"):
+
+    if not (session.get("logged_in") and session.get("username") in users):
         return redirect("/")
+
+    username = session.get("username")
+
+    room_name = request.form.get("room_name")
+
     if room_name in chat_rooms.keys():
+        users[username] = room_name
+        chat_rooms[room_name].append((username, "Joined the Chat"))
         return redirect(f"/chat/{room_name}")
+
     else:
         return redirect(url_for("join"))
 
 
 @app.route("/chat/<string:room_name>")
 def chat(room_name):
-    if not session.get("logged_in"):
+    if not (session.get("logged_in") and session.get("username") in users):
         return redirect("/")
     username = session.get("username")
     if room_name not in chat_rooms.keys():
@@ -108,7 +125,7 @@ def chat(room_name):
 
 @app.route("/add", methods=["POST"])
 def add_message():
-    if not session.get("logged_in"):
+    if not (session.get("logged_in") and session.get("username") in users):
         return redirect("/")
     username = session.get("username")
     room_name = request.form.get("room_name")
@@ -123,12 +140,23 @@ def add_message():
 def logout():
     username = session.get("username")
     try:
-        del session["logged_in"]
-        del session["username"]
-        del session["gender"]
-        users.remove(username)
+        leave_group(username)
+
+        users.pop(username)
+
+        session.clear()
     except: pass
     return redirect("/")
+
+
+@app.route("/leave/<string:room_name>")
+def leave(room_name):
+    if not (session.get("logged_in") and session.get("username") in users):
+        return redirect("/")
+    username = session.get("username")
+    leave_group(username)
+    return redirect("/join")
+
 
     
 if __name__== "__main__":

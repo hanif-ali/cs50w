@@ -4,7 +4,12 @@
 <link rel="stylesheet" href="{{url_for('static', filename='chat.css')}}">
 {% endblock %}
 
+{% block links %}
+<a href="/leave/{{room_name}}" class="navigation-link">Leave Room</a>
+{% endblock %}
+
 {% block content %}
+
 
 
 <div class="wrap-chat">
