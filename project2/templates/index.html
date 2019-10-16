@@ -13,11 +13,25 @@
             <div class="form-title">
                 Sign In Below To Enter a Chat Room
             </div>
-            {% if taken %}
-            <div class="form-error">
-                The username is already taken.
-            </div>
-            {% endif %}
+            {% with messages=get_flashed_messages(with_categories=true) %}
+                {% for message in messages %}
+                {% if message.0 == "warning" %}
+                <div class="alert alert-warning login-message">
+                    {{message.1}}
+                </div>
+                {% endif %}
+                {% if message.0 == "error" %}
+                <div class="alert alert-danger login-message">
+                    {{message.1}}
+                </div>
+                {% endif %}
+                {% if message.0 == "success" %}
+                <div class="alert alert-success login-message">
+                    {{message.1}}
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endwith %}
             <div class="wrap-input">
                     <input class="input-pad" type="text" name="username" placeholder="Display Name" required>
                     <span class="focus-input"></span>

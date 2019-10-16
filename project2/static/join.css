@@ -6,7 +6,7 @@
 
 .wrap-join-form{
     margin: auto;
-    margin-top: 20vh;
+    margin-top: 6vh;
 
 }
 
@@ -22,4 +22,11 @@
 
 .wrap-join-form div:last-child{
     margin-right: auto;
+}
+
+.wrap-join-flash{
+    margin-top: 10vh;
+}
+.wrap-join-flash .alert{
+    margin: auto;
 }

@@ -34,7 +34,7 @@ Flack - Online Chatting <span class="room-name">Room: {{room_name}}</span>
         <form class="chat-form" action="/add" method="POST">
             <div class="row">
             <div class="wrap-input wrap-message col-10">
-                <input type="text" placeholder="Type your message..." name="message">
+                <input type="text" placeholder="Type your message..."  name="message" required>
 
             </div>
             <input type="hidden" name="room_name" value="{{room_name}}">

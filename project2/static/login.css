@@ -29,3 +29,8 @@
   color: black;
   text-align: center;
 }
+
+.login-message{
+  margin-right: 10px;
+  margin-left: 10px;
+}

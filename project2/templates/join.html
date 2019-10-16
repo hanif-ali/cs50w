@@ -6,6 +6,35 @@
 
 {% block content %}
 
+
+<div class="wrap-join-flash ">
+    {% with messages=get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.0 == "primary" %}
+        <div class="alert alert-primary col-9">
+            {{message.1}}
+        </div>
+        {% endif %}
+        {% if message.0 == "warning" %}
+        <div class="alert alert-warning col-9">
+            {{message.1}}
+        </div>
+        {% endif %}
+        {% if message.0 == "error" %}
+        <div class="alert alert-danger col-9">
+            {{message.1}}
+        </div>
+        {% endif %}
+        {% if message.0 == "success" %}
+        <div class="alert alert-success col-9">
+            {{message.1}}
+        </div>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
 <div class="wrap-join-form row">
     <div class="col-lg-4 col-md-5 col-sm-6">
         <form action="/create" method="post">
