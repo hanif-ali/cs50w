@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{url_for('static', filename='chat.css')}}">
 {% endblock %}
 
+{% block brand %}
+Flack - Online Chatting <span class="room-name">Room: {{room_name}}</span>
+{% endblock %}
+
 {% block links %}
 <a href="/leave/{{room_name}}" class="navigation-link">Leave Room</a>
 {% endblock %}

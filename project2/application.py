@@ -7,9 +7,10 @@ app.config["SECRET_KEY"] = "1k3jflakj3243kljs"
 
 socket = SocketIO(app)
 
+# {"username": "room currently in"}
 users = {} 
 
-# {"room":[ ("Sender", "Text") ] }
+# {"room":[ ("Sender", "Text"), ("Sender", "Text") ] }
 chat_rooms = {}
 
 

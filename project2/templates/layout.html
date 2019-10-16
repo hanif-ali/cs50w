@@ -12,7 +12,7 @@
 <body>
     <div class="container-global" style="background-image:url('static/background.jpg');">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Flack - Online Chatting</a>
+            <a class="navbar-brand" href="#">{% block brand %}Flack - Online Chatting{% endblock %}</a>
             {% if username %}
             <span class="span ml-auto text-white" >
                 Logged in as {{username}}
