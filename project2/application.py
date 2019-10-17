@@ -8,6 +8,7 @@ app.config["SECRET_KEY"] = "1k3jflakj3243kljs"
 
 socket = SocketIO(app)
 
+
 # {"username": "room currently in"}
 users = {} 
 
@@ -16,7 +17,7 @@ chat_rooms = {}
 
 class ChatRoomNamespace(Namespace):
     def on_connect(self):
-        print("Connected", file=sys.stdout)
+        pass
 
     def on_disconnect(self):
         pass
@@ -31,7 +32,8 @@ class ChatRoomNamespace(Namespace):
                 chat_rooms[room_name].append((username, message))
                 self.emit("message_receive", {"sender": username, "message": message})
 
-        except: raise
+        except: return
+
 
 
 @app.after_request
@@ -52,6 +54,7 @@ def add_header(r):
     r.headers["Expires"] = "0"
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
+
 
 def leave_group(username):
     if users[username]:
@@ -158,20 +161,6 @@ def chat(room_name):
         return render_template("chat.html", username=username, messages=messages, 
         room_name=room_name)
 
-@app.route("/add", methods=["POST"])
-def add_message():
-    if not (session.get("logged_in") and session.get("username") in users):
-        flash("Please Log In First.", "error")
-        return redirect("/")
-    username = session.get("username")
-    room_name = request.form.get("room_name")
-    message = request.form.get("message")
-    if room_name not in chat_rooms.keys():
-        flash("Sorry The Room You Requested To Join Does Not Exist.", "error")
-        return redirect(url_for("join"))
-    else:
-        chat_rooms[room_name].append((username, message))
-        return redirect(f"/chat/{room_name}")
 
 @app.route("/logout")
 def logout():
