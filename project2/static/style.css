@@ -65,13 +65,13 @@ input:-ms-input-placeholder { color: #999999; }
 
 /* Button Styling */
 
-button, input[type="submit"]{
+button, input[type="button"], input[type="submit"]{
 	outline: none !important;
 	border: none;
 	background: transparent;
 }
 
-button:hover, input[type="submit"]:hover{
+button:hover, input[type="button"]:hover, input[type="submit"]:hover{
 	cursor: pointer;
 }
 
@@ -136,7 +136,7 @@ button:hover, input[type="submit"]:hover{
 }
 
 
-input[type="submit"]{
+input[type="submit"],input[type="button"]{
   font-family: Montserrat-Bold;
   font-size: 15px;
   color: #e0e0e0;
@@ -148,7 +148,7 @@ input[type="submit"]{
   transition: all 0.4s;
 }
 
-input[type="submit"]:hover{
+input[type="submit"]:hover,input[type="button"]:hover{
   background-color: #444477;
 }
 

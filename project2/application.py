@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask_socketio import SocketIO, emit
+from flask_socketio import Namespace
 import sys
 
 app = Flask(__name__)
@@ -13,6 +14,24 @@ users = {}
 # {"room":[ ("Sender", "Text"), ("Sender", "Text") ] }
 chat_rooms = {}
 
+class ChatRoomNamespace(Namespace):
+    def on_connect(self):
+        print("Connected", file=sys.stdout)
+
+    def on_disconnect(self):
+        pass
+
+    def on_message_send(self, data): 
+        try:
+            message = data["message"]
+            username = data["username"]
+            room_name = data["room_name"]
+
+            if username == session.get("username") and users[username] == room_name:
+                chat_rooms[room_name].append((username, message))
+                self.emit("message_receive", {"sender": username, "message": message})
+
+        except: raise
 
 
 @app.after_request
@@ -97,6 +116,9 @@ def create_room():
     else:
         chat_rooms[room_name] = []
         chat_rooms[room_name].append((username, "Created Group"))
+
+        socket.on_namespace(ChatRoomNamespace(f"/chat/{room_name}/socket"))
+
         users[username] = room_name
         return redirect(f"/chat/{room_name}")
     
@@ -178,7 +200,6 @@ def leave(room_name):
     leave_group(username)
     flash(f"Left Chat Room '{room_name}'. Join A Different One Below or Create A New One.", "success")
     return redirect("/join")
-
 
     
 if __name__== "__main__":
